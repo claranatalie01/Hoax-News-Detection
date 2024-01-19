@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Fake News Detector</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+ <div class="login">
+    <img src="{{ url_for('static', filename='bayez_tsdn.png') }}" alt="Your Logo" style="width: 160px; height: auto; margin-bottom: 20px; position: fixed; top: 30px; left: 30px;">
+	<h1>Fake News Detector</h1>
+
+    <form action="{{ url_for('predict')}}" method="POST">
+    	<textarea  name="message" rows="10" cols="50" required="required" style="font-size: 12pt" placeholder="Tulis judul/headline berita anda disini"></textarea>
+		<br> </br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">VALID CHECKING</button>
+
+        	<div class="results">
+    {% if 1 in y_pred %}
+        <h2 style="color:red;">HATI-HATI! Konten ini terindikasi HOAX ATAU FAKE! </h2>
+    {% elif 0 in y_pred %}
+        <h2 style="color:green;"><b>TENANG, konten ini ASLI</b></h2>
+    {% endif %}
+</div>
+
+
+    </form>
+
+</div>
